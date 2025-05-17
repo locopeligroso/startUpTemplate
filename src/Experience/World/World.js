@@ -1,6 +1,7 @@
+import * as THREE from 'three'
 import Experience from '../Experience'
-import Environment from './Environment'
-import Model from './Model'
+import testVertexShader from '../../Materials/shaders/water/vertex.glsl'
+import testFragmentShader from '../../Materials/shaders/water/fragment.glsl'
 
 export default class World {
     constructor() {
@@ -8,10 +9,16 @@ export default class World {
         this.scene = this.experience.scene
         this.resources = this.experience.resources
 
-        this.resources.on('ready', () => {
-            // Setup
-            this.model = new Model()
-            this.environment = new Environment()
+        const geometry = new THREE.PlaneGeometry(2, 2, 128, 128)
+
+        const material = new THREE.RawShaderMaterial({
+            vertexShader: testVertexShader,
+            fragmentShader: testFragmentShader,
         })
+
+        const mesh = new THREE.Mesh(geometry, material)
+        mesh.rotation.x = -Math.PI * 0.5
+
+        this.scene.add(mesh)
     }
 }

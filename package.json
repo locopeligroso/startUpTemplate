@@ -19,6 +19,7 @@
     "stats-js": "^1.0.1",
     "stats.js": "^0.17.0",
     "three": "^0.172.0",
-    "vercel": "^39.3.0"
+    "vercel": "^39.3.0",
+    "vite-plugin-glsl": "^1.4.1"
   }
 }
